@@ -15,6 +15,10 @@ function ispmi(){
   myUrl("ISP.MI", 300, "2020-10-09", 1.6731, 1200, 500);
 }
 
+function gold(){
+  myUrl("GOLD", 300, "2021-01-08", 24, 1200, 500);
+}
+
 function nflx(){
   myUrl("NFLX", 300, "2021-02-18", 548.22, 1200, 500);
 }
@@ -43,7 +47,7 @@ function MyCustom(){
   var p  = document.getElementById("myprice").value;
   var w  = document.getElementById("mywidth").value;
   var h  = document.getElementById("myheight").value;
-  myUrl(s, ds, d, p, w, h);
+  myUrl(s.trim(), ds.trim(), d.trim(), p.trim(), w.trim(), h.trim());
   
 }
 
