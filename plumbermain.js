@@ -35,18 +35,15 @@ function tsla(){
   myUrl("TSLA", 300, "2021-02-15", 781.30, 1200, 500);
 }
 
-/*
-"<a href=http://192.168.4.1:8787/p/6f5ac98c/report?Symbol=ISP.MI&Observation_Days=300&Buy_Date=2020-10-09&Buy_price=1.6731&chart_w=1200&chart_h=500>ISP.MI</a> - ",
 
-"<a href=http://192.168.4.1:8787/p/6f5ac98c/report?Symbol=NFLX&Observation_Days=300&Buy_Date=2021-02-18&Buy_price=548.22&chart_w=1200&chart_h=500>NFLX</a> - ",
+function MyCustom(){
+  var s  =  document.getElementById("mysymbol").value;
+  var ds = document.getElementById("mydays").value;
+  var d  = document.getElementById("mydate").value;
+  var p  = document.getElementById("myprice").value;
+  var w  = document.getElementById("mywidth").value;
+  var h  = document.getElementById("myheight").value;
+  myUrl(s, ds, d, p, w, h);
+  
+}
 
-"<a href=http://192.168.4.1:8787/p/6f5ac98c/report?Symbol=GOOGL&Observation_Days=300&Buy_Date=2021-03-03&Buy_price=2097.07&chart_w=1200&chart_h=500>GOOGL</a> - ",
-
-"<a href=http://192.168.4.1:8787/p/6f5ac98c/report?Symbol=AMZN&Observation_Days=300&Buy_Date=2021-02-22&Buy_price=3092.93&chart_w=1200&chart_h=500>AMZN</a> - ",
-
-"<a href=http://192.168.4.1:8787/p/6f5ac98c/report?Symbol=AAPL&Observation_Days=300&Buy_Date=2021-02-15&Buy_price=129.87&chart_w=1200&chart_h=500>AAPL</a> - ",
-
-"<a href=http://192.168.4.1:8787/p/6f5ac98c/report?Symbol=TSLA&Observation_Days=300&Buy_Date=2021-02-15&Buy_price=781.30&chart_w=1200&chart_h=500>TSLA</a> "
-
-
-*/

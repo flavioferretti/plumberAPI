@@ -170,12 +170,26 @@ function(Symbol="ISP.MI",Observation_Days="300",Buy_Date="2020-10-09",Buy_price=
   
   
   html_nav <- paste('<script src="http://localhost/R/PlumberAPI/plumbermain.js"> </script>',
-                    '<button onclick=ispmi();>ISP.MI</button>' ,
-                    '<button onclick=apple();>AAPL</button>' ,
-                    '<button onclick=amzn();>AMZN</button>' ,
-                    '<button onclick=googl();>GOOGL</button>', 
-                    '<button onclick=nflx();>NFLX</button>' ,
-                    '<button onclick=tsla();>TSLA</button>' 
+                    '<table>',
+                    '<tr><td><button onclick=ispmi();>ISP.MI</button> ' ,
+                    '<button onclick=apple();>AAPL</button>  ' ,
+                    '<button onclick=amzn();>AMZN</button>  ' ,
+                    '<button onclick=googl();>GOOGL</button>  ', 
+                    '<button onclick=nflx();>NFLX</button> ' ,
+                    '<button onclick=tsla();>TSLA</button> </td></tr>',
+                    '<tr><td>',
+                      '<label for="mysymbol">Symbol: </label> <input type=text id=mysymbol value="ISP.MI"> ',
+                      '<label for="mydays">Observation days: </label> <input type="number" id="mydays" name="mydays" min="5" max="50000" value="300"> ',
+                      '<label for="mydate">Buy date: </label><input type="date" id="mydate" name="mydate" value="2020-10-09">',
+                      '<label for="myprice">Buy price: </label> <input type=myprice id=myprice value="1.6731"> ',
+                    '</td></tr>',
+                    
+                    '<tr><td>',
+                      '<label for="mywidth">Chart width: </label> <input type="number" id="mywidth" name="mywidth" min="200" max="5000" value="1200"> ',
+                      '<label for="myheight">Chart height: </label> <input type="number" id="myheight" name="myheight" min="200" max="5000" value="500"> ',
+                      '<button onclick=MyCustom();>Query</button> ' ,
+                    '</td></tr>',
+                    '</table>'
                     )
   
   paste(html_head, 
