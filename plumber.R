@@ -169,16 +169,18 @@ function(Symbol="ISP.MI",Observation_Days="300",Buy_Date="2020-10-09",Buy_price=
   
   
   
-  html_nav <- paste("<a href=http://192.168.4.1:8787/p/6f5ac98c/report?Symbol=ISP.MI&Observation_Days=300&Buy_Date=2020-10-09&Buy_price=1.6731&chart_w=1200&chart_h=500>ISP.MI</a> - ",
-                    "<a href=http://192.168.4.1:8787/p/6f5ac98c/report?Symbol=NFLX&Observation_Days=300&Buy_Date=2021-02-18&Buy_price=548.22&chart_w=1200&chart_h=500>NFLX</a> - ",
-                    "<a href=http://192.168.4.1:8787/p/6f5ac98c/report?Symbol=GOOGL&Observation_Days=300&Buy_Date=2021-03-03&Buy_price=2097.07&chart_w=1200&chart_h=500>GOOGL</a> - ",
-                    "<a href=http://192.168.4.1:8787/p/6f5ac98c/report?Symbol=AMZN&Observation_Days=300&Buy_Date=2021-02-22&Buy_price=3092.93&chart_w=1200&chart_h=500>AMZN</a> - ",
-                    "<a href=http://192.168.4.1:8787/p/6f5ac98c/report?Symbol=AAPL&Observation_Days=300&Buy_Date=2021-02-15&Buy_price=129.87&chart_w=1200&chart_h=500>AAPL</a> - ",
-                    "<a href=http://192.168.4.1:8787/p/6f5ac98c/report?Symbol=TSLA&Observation_Days=300&Buy_Date=2021-02-15&Buy_price=781.30&chart_w=1200&chart_h=500>TSLA</a> ")
+  html_nav <- paste('<script src="http://localhost/R/PlumberAPI/plumbermain.js"> </script>',
+                    '<button onclick=ispmi();>ISP.MI</button>' ,
+                    '<button onclick=apple();>AAPL</button>' ,
+                    '<button onclick=amzn();>AMZN</button>' ,
+                    '<button onclick=googl();>GOOGL</button>', 
+                    '<button onclick=nflx();>NFLX</button>' ,
+                    '<button onclick=tsla();>TSLA</button>' 
+                    )
   
   paste(html_head, 
         html_nav,
-        "<h4>Overview</h4><br>",
+        "<h4>" , Symbol , " Overview [ " , win_equity ," ]</h4><br>",
         html_body_img_init, 
         html_body_img01, 
         html_body_img_close, 
