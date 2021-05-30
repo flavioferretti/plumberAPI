@@ -28,14 +28,14 @@ ui <- fluidPage(# Application title
             dateRangeInput(
                 "dates",
                 "Date range",
-                start = "2020-01-01",
+                start = "1980-01-01",
                 end = as.character(Sys.Date())
             ),
             selectInput(
                 "chart_type_yahoo",
                 "Chart type:",
                 c("candlesticks", "line"),
-                selected = "candlesticks",
+                selected = "line",
                 multiple = FALSE
             ),
             selectInput(
@@ -75,12 +75,12 @@ ui <- fluidPage(# Application title
                 selected = "white",
                 multiple = FALSE
             ),
-            actionButton("goButton", "Go!", class = "btn-success")
+            actionButton("goButton", "Store on DB", class = "btn-primary")
         ),
         
         # Show a plot of the generated distribution
         mainPanel(plotOutput("plot"), hr(),
-                  plotOutput("distPlot"))
+                  verbatimTextOutput("verb"))
     ))
 
 # Define server logic required to draw a histogram
@@ -121,23 +121,11 @@ server <- function(input, output) {
                 )
             ))
         }#weekly
-        
-        
-        
+
     })
-    
-    # getSymbols(Symbols = symbolvalue, warnings = FALSE,src='yahoo',from='1990-01-01' ,return.class='xts' )
-    
-    
-    
-    
+
+    # plot stuff
     output$plot <- renderPlot({
-        
-        # Take a dependency on input$goButton. This will run once initially,
-        # because the value changes from NULL to 0.
-        input$goButton
-        
-        
         y <- dataInput_yahoo()
         chartSeries(
             y,
@@ -147,7 +135,12 @@ server <- function(input, output) {
             type =  input$chart_type_yahoo ,
             TA = c(addVo())
         )
-        
+    })
+    
+    
+    # store stuff
+    observeEvent(input$goButton, {
+        # session$sendCustomMessage(type = 'testmessage', message = 'Now store dataset on MySQL Server')
         
         xa <- getSymbols(
             input$yahoo_symbol,
@@ -166,7 +159,7 @@ server <- function(input, output) {
         #debug
         #tail(x)
         #names(x)[0] <- "date"
-        x$date<-rownames(x)
+        x$date <- rownames(x)
         
         names(x)[1] <- "o"
         names(x)[2] <- "h"
@@ -176,8 +169,8 @@ server <- function(input, output) {
         names(x)[6] <- "a"
         
         write.csv(x, "data.csv", row.names = FALSE)
- 
-         
+        
+        
         ### mariaDB ###
         db <-
             dbConnect(
@@ -199,7 +192,6 @@ server <- function(input, output) {
         ###
         rm(x)
         ###
-        
         
     })
     
